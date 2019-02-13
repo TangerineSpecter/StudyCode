@@ -6,13 +6,13 @@ public class ZhangJiaHui implements Person {
 
 	@Override
 	public Double cost() {
-		// Ä¬ÈÏÏû·ÑÎª0
+		// é»˜è®¤æ¶ˆè´¹ä¸º0
 		return 0.0;
 	}
 
 	@Override
 	public void show() {
-		System.out.println("´ó¼ÒºÃ£¬ÎÒÊÇÔüÔü»Ô£¡");
+		System.out.println("å¤§å®¶å¥½ï¼Œæˆ‘æ˜¯æ¸£æ¸£è¾‰ï¼");
 	}
 
 }

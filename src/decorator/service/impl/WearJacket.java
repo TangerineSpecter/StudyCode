@@ -4,10 +4,10 @@ import decorator.service.ClothesDecorator;
 import decorator.service.Person;
 
 /**
- * ´©¼Ð¿Ë
+ * ç©¿å¤¹å…‹
  * 
  * @author TangerineSpecter
- * @Date 2019Äê2ÔÂ11ÈÕ
+ * @Date 2019å¹´2æœˆ11æ—¥
  */
 public class WearJacket extends ClothesDecorator {
 
@@ -17,14 +17,14 @@ public class WearJacket extends ClothesDecorator {
 
 	@Override
 	public Double cost() {
-		// ¼ÓÉÏ¼Ð¿Ë¼ÛÇ®
+		// åŠ ä¸Šå¤¹å…‹ä»·é’±
 		return person.cost() + 100;
 	}
 
 	@Override
 	public void show() {
 		person.show();
-		System.out.println("´©ÉÏÁË¼Ð¿Ë£¬ÀÛ¼ÆÏû·Ñ£º" + this.cost());
+		System.out.println("ç©¿ä¸Šäº†å¤¹å…‹ï¼Œç´¯è®¡æ¶ˆè´¹ï¼š" + this.cost());
 	}
 
 }

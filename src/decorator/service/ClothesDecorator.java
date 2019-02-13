@@ -1,7 +1,7 @@
 package decorator.service;
 
 public abstract class ClothesDecorator implements Person {
-	// ×°ÊÎÆ÷ÖĞÒªÊ¹ÓÃµÄ×°ÊÎÆ÷¶ÔÏó£¬¹¹Ôì·½·¨´«Èë
+	// è£…é¥°å™¨ä¸­è¦ä½¿ç”¨çš„è£…é¥°å™¨å¯¹è±¡ï¼Œæ„é€ æ–¹æ³•ä¼ å…¥
 	protected Person person;
 
 	public ClothesDecorator(Person person) {

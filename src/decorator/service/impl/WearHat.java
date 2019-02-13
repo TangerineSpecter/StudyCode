@@ -3,6 +3,12 @@ package decorator.service.impl;
 import decorator.service.ClothesDecorator;
 import decorator.service.Person;
 
+/**
+ * æˆ´å¸½å­
+ * 
+ * @author TangerineSpecter
+ * @Date 2019å¹´2æœˆ11æ—¥
+ */
 public class WearHat extends ClothesDecorator {
 
 	public WearHat(Person person) {
@@ -11,14 +17,14 @@ public class WearHat extends ClothesDecorator {
 
 	@Override
 	public Double cost() {
-		// ¼ÓÉÏÃ±×Ó¼ÛÇ®
+		// åŠ ä¸Šå¸½å­ä»·é’±
 		return person.cost() + 50;
 	}
 
 	@Override
 	public void show() {
 		person.show();
-		System.out.println("´÷ÉÏÁËÃ±×Ó£¬ÀÛ¼ÆÏû·Ñ£º" + this.cost());
+		System.out.println("æˆ´ä¸Šäº†å¸½å­ï¼Œç´¯è®¡æ¶ˆè´¹ï¼š" + this.cost());
 	}
 
 }

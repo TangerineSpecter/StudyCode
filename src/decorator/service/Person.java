@@ -3,9 +3,11 @@ package decorator.service;
 public interface Person {
 
 	/**
-	 * ÀÛ¼ÆÏû·Ñ
+	 * æ€»æ¶ˆè´¹
+	 * 
 	 * @return
 	 */
 	public Double cost();
+
 	public void show();
 }
