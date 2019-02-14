@@ -6,7 +6,7 @@ public class CustomerB extends Customer{
 
 	@Override
 	public void update() {
-		System.out.println("我是客户B，我收到报纸了！");
+		System.out.println("鎴戞槸瀹㈡埛B锛屾垜鏀跺埌鎶ョ焊浜嗭紒");
 	}
 
 }

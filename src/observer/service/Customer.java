@@ -1,10 +1,10 @@
 package observer.service;
 
 /**
- * ¿Í»§£¨¹Û²ìÕß£©
+ * é¡¾å®¢
  * 
  * @author TangerineSpecter
- * @Date 2019Äê2ÔÂ12ÈÕ
+ * @Date 2019å¹´2æœˆ12æ—¥
  */
 public abstract class Customer {
 

@@ -1,32 +1,17 @@
 package observer.pojo;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import observer.service.Customer;
+import observer.service.BaseSubject;
 
 /**
- * ±¨Éç£¨±»¹Û²ìÕß£©
+ * æŠ¥ç¤¾ï¼ˆè¢«è§‚å¯Ÿè€…ï¼‰
  * 
  * @author TangerineSpecter
- * @Date 2019Äê2ÔÂ12ÈÕ
+ * @Date 2019å¹´2æœˆ12æ—¥
  */
-public class NewsOffice {
+public class NewsOffice extends BaseSubject {
 
-	private List<Customer> customers = new ArrayList<>();
-
-	public void addCustomer(Customer customer) {
-		this.customers.add(customer);
-	}
-
-	// Ä£Äâ±¨Ö½
+	// æ¨¡æ‹ŸæŠ¥çº¸Ö½
 	public void newsPaperCome() {
 		this.notifyAllObservers();
-	}
-
-	public void notifyAllObservers() {
-		for (Customer customer : customers) {
-			customer.update();
-		}
 	}
 }
