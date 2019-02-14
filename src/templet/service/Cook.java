@@ -4,8 +4,8 @@ public abstract class Cook {
 	/**
 	 * 钩子开关
 	 */
-	protected boolean needBeforeCook = true;
-	protected boolean needAfterCook = true;
+	public boolean needBeforeCook = true;
+	public boolean needAfterCook = true;
 
 	public void open() {
 		System.out.println("打开抽油烟机...");

@@ -1,5 +1,6 @@
-package templet.service;
+package templet;
 
+import templet.service.Cook;
 import templet.service.impl.CookXiHongShi;
 
 /**
