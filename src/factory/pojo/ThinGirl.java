@@ -8,6 +8,10 @@ public class ThinGirl extends Girl {
 		System.out.println("你好，我是痩妹子~");
 	}
 
+	public ThinGirl(String city) {
+		System.out.println(String.format("你好，我是来自%s的痩妹子~", city));
+	}
+
 	@Override
 	public void show() {
 
