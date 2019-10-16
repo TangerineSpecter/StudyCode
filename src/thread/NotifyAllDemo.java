@@ -1,12 +1,12 @@
 package thread;
 
 /**
- * sleep和wait代码演示
+ * notify和notifyAll代码演示
  */
-public class WaitSleepDemo {
+public class NotifyAllDemo {
 
     /**
-     * wait让出CPU，释放锁，sleep不释放锁
+     * notify随机唤醒，notifyAll唤醒全部
      * <p>
      * 执行结果：
      * Thread A is waiting to get lock
@@ -29,8 +29,8 @@ public class WaitSleepDemo {
                         System.out.println("Thread A get lock");
                         Thread.sleep(20);
                         System.out.println("Thread A do wait method");
-                        //如果将此处wait改为sleep，那么只有在A执行完毕，B才能获取到锁继续执行。
-                        lock.wait(1000);
+                        //此处进入无限等待，等待唤醒
+                        lock.wait();
                         System.out.println("Thread A is done");
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -54,6 +54,8 @@ public class WaitSleepDemo {
                         System.out.println("Thread B is sleeping 10 ms");
                         Thread.sleep(20);
                         System.out.println("Thread B is done");
+                        //释放全部锁
+                        lock.notifyAll();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
