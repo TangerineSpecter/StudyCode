@@ -11,6 +11,15 @@ import java.util.concurrent.*;
  */
 public class SubmitDemo {
 
+    /**
+     * submit() 在 ExecutorService 接口中声明，
+     * 具体实现在 AbstractExecutorService 抽象类中，
+     * 此方法作用也是提交任务到线程池，
+     * 但是与 execute() 方法有些不同，submit() 可以使用 Future 来获取任务执行结果，
+     * 但是最终还是调用 execute() 提交任务（所以此方法是 ThreadPoolExecutor 最核心）。
+     * 需要返回任务结果的使用这种方式提交，获取结果 get() 是阻塞方法，配合 CountDownLatch 使用可以避免阻塞
+     * @param args
+     */
     public static void main(String[] args) {
         ThreadPoolExecutor threadPool = new ThreadPoolExecutor(5, 10,
                 10, TimeUnit.SECONDS,
