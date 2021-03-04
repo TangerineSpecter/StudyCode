@@ -1,10 +1,10 @@
-package design_pattern.handler;
+package com.tangerine.specter.design_pattern.handler;
 
-import design_pattern.handler.pojo.Post;
-import design_pattern.handler.service.PostHandler;
-import design_pattern.handler.service.impl.AdHandler;
-import design_pattern.handler.service.impl.SensitiveWordsHandler;
-import design_pattern.handler.service.impl.YellowHandler;
+import com.tangerine.specter.design_pattern.handler.pojo.Post;
+import com.tangerine.specter.design_pattern.handler.service.PostHandler;
+import com.tangerine.specter.design_pattern.handler.service.impl.AdHandler;
+import com.tangerine.specter.design_pattern.handler.service.impl.SensitiveWordsHandler;
+import com.tangerine.specter.design_pattern.handler.service.impl.YellowHandler;
 
 /**
  * 责任链模式

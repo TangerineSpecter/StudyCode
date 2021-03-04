@@ -1,7 +1,7 @@
-package design_pattern.templet;
+package com.tangerine.specter.design_pattern.templet;
 
-import design_pattern.templet.service.Cook;
-import design_pattern.templet.service.impl.CookXiHongShi;
+import com.tangerine.specter.design_pattern.templet.service.Cook;
+import com.tangerine.specter.design_pattern.templet.service.impl.CookXiHongShi;
 
 /**
  * 模版模式

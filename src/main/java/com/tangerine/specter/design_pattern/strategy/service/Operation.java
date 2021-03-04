@@ -1,4 +1,4 @@
-package design_pattern.strategy.service;
+package com.tangerine.specter.design_pattern.strategy.service;
 
 public interface Operation {
 

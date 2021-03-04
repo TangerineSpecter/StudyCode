@@ -1,4 +1,4 @@
-package design_pattern.adapter.service;
+package com.tangerine.specter.design_pattern.adapter.service;
 
 public interface MusicPlayer {
 

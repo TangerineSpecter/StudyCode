@@ -1,4 +1,4 @@
-package design_pattern.observer.service;
+package com.tangerine.specter.design_pattern.observer.service;
 
 import java.util.ArrayList;
 import java.util.List;

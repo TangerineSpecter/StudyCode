@@ -1,4 +1,4 @@
-package design_pattern.proxy.service.impl;
+package com.tangerine.specter.design_pattern.proxy.service.impl;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

@@ -1,6 +1,6 @@
-package design_pattern.observer.pojo;
+package com.tangerine.specter.design_pattern.observer.pojo;
 
-import design_pattern.observer.service.BaseSubject;
+import com.tangerine.specter.design_pattern.observer.service.BaseSubject;
 
 /**
  * 报社（被观察者）

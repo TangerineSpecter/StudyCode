@@ -1,4 +1,4 @@
-package thread;
+package com.tangerine.specter.thread;
 
 /**
  * 主线程等待以及join()代码演示

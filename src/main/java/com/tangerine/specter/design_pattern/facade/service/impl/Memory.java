@@ -1,12 +1,12 @@
-package design_pattern.facade.service.impl;
+package com.tangerine.specter.design_pattern.facade.service.impl;
 
-import design_pattern.facade.service.IHardware;
+import com.tangerine.specter.design_pattern.facade.service.IHardware;
 
 public class Memory implements IHardware {
 
-	@Override
-	public void start() {
-		System.out.println("启动内存");
-	}
+    @Override
+    public void start() {
+        System.out.println("启动内存");
+    }
 
 }

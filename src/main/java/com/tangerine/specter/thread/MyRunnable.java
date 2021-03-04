@@ -1,4 +1,4 @@
-package thread;
+package com.tangerine.specter.thread;
 
 /**
  * 实现Runnable代码演示

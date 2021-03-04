@@ -1,6 +1,6 @@
-package design_pattern.observer.service.impl;
+package com.tangerine.specter.design_pattern.observer.service.impl;
 
-import design_pattern.observer.service.Customer;
+import com.tangerine.specter.design_pattern.observer.service.Customer;
 
 public class CustomerB extends Customer{
 

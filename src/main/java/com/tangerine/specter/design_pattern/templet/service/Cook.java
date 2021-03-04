@@ -1,4 +1,4 @@
-package design_pattern.templet.service;
+package com.tangerine.specter.design_pattern.templet.service;
 
 public abstract class Cook {
 	/**

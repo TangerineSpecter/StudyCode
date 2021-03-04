@@ -1,6 +1,6 @@
-package design_pattern.factory.pojo;
+package com.tangerine.specter.design_pattern.factory.pojo;
 
-import design_pattern.factory.service.Girl;
+import com.tangerine.specter.design_pattern.factory.service.Girl;
 
 public class FatGirl extends Girl {
 

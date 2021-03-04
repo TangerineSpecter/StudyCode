@@ -1,8 +1,8 @@
-package design_pattern.facade.service;
+package com.tangerine.specter.design_pattern.facade.service;
 
-import design_pattern.facade.service.impl.Cpu;
-import design_pattern.facade.service.impl.Disk;
-import design_pattern.facade.service.impl.Memory;
+import com.tangerine.specter.design_pattern.facade.service.impl.Cpu;
+import com.tangerine.specter.design_pattern.facade.service.impl.Disk;
+import com.tangerine.specter.design_pattern.facade.service.impl.Memory;
 
 /**
  * 启动按钮

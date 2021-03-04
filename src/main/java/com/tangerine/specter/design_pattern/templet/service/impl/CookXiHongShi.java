@@ -1,6 +1,6 @@
-package design_pattern.templet.service.impl;
+package com.tangerine.specter.design_pattern.templet.service.impl;
 
-import design_pattern.templet.service.Cook;
+import com.tangerine.specter.design_pattern.templet.service.Cook;
 
 public class CookXiHongShi extends Cook {
 

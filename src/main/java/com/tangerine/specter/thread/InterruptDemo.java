@@ -1,4 +1,4 @@
-package thread;
+package com.tangerine.specter.thread;
 
 public class InterruptDemo {
 

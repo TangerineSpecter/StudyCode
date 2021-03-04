@@ -1,4 +1,4 @@
-package thread;
+package com.tangerine.specter.thread;
 
 /**
  * sleep和wait代码演示

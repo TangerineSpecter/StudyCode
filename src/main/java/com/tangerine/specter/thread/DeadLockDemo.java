@@ -19,38 +19,39 @@ public class DeadLockDemo {
         Thread.sleep(1);
         new Thread(new DeadLock(false), "线程2").start();
     }
-}
 
-/**
- * 模拟死锁
- */
-class DeadLock implements Runnable {
-    private boolean flag;
+    /**
+     * 模拟死锁
+     */
+    static class DeadLock implements Runnable {
+        private boolean flag;
 
-    @Override
-    public void run() {
-        if (flag) {
-            while (true) {
-                synchronized (DeadLockDemo.LOCK1) {
-                    System.out.println(Thread.currentThread().getName() + "获得LOCK1锁");
-                    synchronized (DeadLockDemo.LOCK2) {
-                        System.out.println(Thread.currentThread().getName() + "获得LOCK2锁");
+        @Override
+        public void run() {
+            if (flag) {
+                while (true) {
+                    synchronized (DeadLockDemo.LOCK1) {
+                        System.out.println(Thread.currentThread().getName() + "获得LOCK1锁");
+                        synchronized (DeadLockDemo.LOCK2) {
+                            System.out.println(Thread.currentThread().getName() + "获得LOCK2锁");
+                        }
                     }
                 }
-            }
-        } else {
-            while (true) {
-                synchronized (DeadLockDemo.LOCK2) {
-                    System.out.println(Thread.currentThread().getName() + "获得LOCK2锁---");
-                    synchronized (DeadLockDemo.LOCK1) {
-                        System.out.println(Thread.currentThread().getName() + "获得LOCK1锁---");
+            } else {
+                while (true) {
+                    synchronized (DeadLockDemo.LOCK2) {
+                        System.out.println(Thread.currentThread().getName() + "获得LOCK2锁---");
+                        synchronized (DeadLockDemo.LOCK1) {
+                            System.out.println(Thread.currentThread().getName() + "获得LOCK1锁---");
+                        }
                     }
                 }
             }
         }
-    }
 
-    DeadLock(boolean flag) {
-        this.flag = flag;
+        DeadLock(boolean flag) {
+            this.flag = flag;
+        }
     }
 }
+

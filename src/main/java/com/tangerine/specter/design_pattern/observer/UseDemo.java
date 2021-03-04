@@ -1,14 +1,14 @@
-package design_pattern.observer;
+package com.tangerine.specter.design_pattern.observer;
 
 import java.util.Observable;
 import java.util.Observer;
 
-import design_pattern.observer.pojo.NewsOffice;
-import design_pattern.observer.pojo.NewsOffice2;
-import design_pattern.observer.service.ISubject;
-import design_pattern.observer.service.impl.CustomerA;
-import design_pattern.observer.service.impl.CustomerB;
-import design_pattern.observer.service.impl.CustomerC;
+import com.tangerine.specter.design_pattern.observer.pojo.NewsOffice;
+import com.tangerine.specter.design_pattern.observer.pojo.NewsOffice2;
+import com.tangerine.specter.design_pattern.observer.service.ISubject;
+import com.tangerine.specter.design_pattern.observer.service.impl.CustomerA;
+import com.tangerine.specter.design_pattern.observer.service.impl.CustomerB;
+import com.tangerine.specter.design_pattern.observer.service.impl.CustomerC;
 
 /**
  * 观察者模式

@@ -1,4 +1,4 @@
-package java8;
+package com.tangerine.specter.java8;
 
 import java.util.ArrayList;
 import java.util.List;

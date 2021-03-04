@@ -1,10 +1,9 @@
-package design_pattern.factory.service;
+package com.tangerine.specter.design_pattern.factory.service;
 
 /**
  * 妹子
- *
  */
 public abstract class Girl {
 
-	public abstract void show();
+    public abstract void show();
 }

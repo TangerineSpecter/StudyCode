@@ -1,4 +1,4 @@
-package design_pattern.observer.pojo;
+package com.tangerine.specter.design_pattern.observer.pojo;
 
 import java.util.Observable;
 

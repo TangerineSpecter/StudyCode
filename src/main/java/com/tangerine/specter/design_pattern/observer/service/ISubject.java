@@ -1,4 +1,4 @@
-package design_pattern.observer.service;
+package com.tangerine.specter.design_pattern.observer.service;
 
 public interface ISubject {
 

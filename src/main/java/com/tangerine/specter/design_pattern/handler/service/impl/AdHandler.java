@@ -1,7 +1,7 @@
-package design_pattern.handler.service.impl;
+package com.tangerine.specter.design_pattern.handler.service.impl;
 
-import design_pattern.handler.pojo.Post;
-import design_pattern.handler.service.PostHandler;
+import com.tangerine.specter.design_pattern.handler.pojo.Post;
+import com.tangerine.specter.design_pattern.handler.service.PostHandler;
 
 /**
  * 广告处理器

@@ -1,7 +1,7 @@
-package design_pattern.strategy;
+package com.tangerine.specter.design_pattern.strategy;
 
-import design_pattern.strategy.pojo.Calculator;
-import design_pattern.strategy.service.impl.OperationAdd;
+import com.tangerine.specter.design_pattern.strategy.pojo.Calculator;
+import com.tangerine.specter.design_pattern.strategy.service.impl.OperationAdd;
 
 /**
  * 策略模式

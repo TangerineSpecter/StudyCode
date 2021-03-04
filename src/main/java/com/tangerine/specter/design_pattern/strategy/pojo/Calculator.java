@@ -1,6 +1,6 @@
-package design_pattern.strategy.pojo;
+package com.tangerine.specter.design_pattern.strategy.pojo;
 
-import design_pattern.strategy.service.Operation;
+import com.tangerine.specter.design_pattern.strategy.service.Operation;
 
 public class Calculator {
 

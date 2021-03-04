@@ -1,22 +1,23 @@
-package design_pattern.adapter.service.impl;
+package com.tangerine.specter.design_pattern.adapter.service.impl;
 
-import design_pattern.adapter.service.MusicPlayer;
+
+import com.tangerine.specter.design_pattern.adapter.service.MusicPlayer;
 
 public class PlayerAdapter implements MusicPlayer {
-	// 在适配器中使用旧接口
-	private ExistPlayer player;
+    // 在适配器中使用旧接口
+    private ExistPlayer player;
 
-	public PlayerAdapter() {
-		player = new ExistPlayer();
-	}
+    public PlayerAdapter() {
+        player = new ExistPlayer();
+    }
 
-	@Override
-	public void play(String type, String filename) {
-		if (type == "mp3") {
-			player.playMp3(filename);
-		} else if (type == "wma") {
-			player.playWma(filename);
-		}
-	}
+    @Override
+    public void play(String type, String filename) {
+        if (type == "mp3") {
+            player.playMp3(filename);
+        } else if (type == "wma") {
+            player.playWma(filename);
+        }
+    }
 
 }
