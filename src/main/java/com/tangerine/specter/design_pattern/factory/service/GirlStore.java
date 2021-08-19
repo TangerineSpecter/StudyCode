@@ -13,7 +13,7 @@ public class GirlStore {
         this.factory = factory;
     }
 
-    public Girl createGril(String whatYouLike) {
+    public Girl createGirl(String whatYouLike) {
         return factory.createGirl(whatYouLike);
     }
 }

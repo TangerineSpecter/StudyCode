@@ -47,7 +47,7 @@ public class ExecuteDemo {
 
         @Override
         public void run() {
-            String name = Thread.currentThread().getName();
+            String name = Thread.currentThread().getName() + "：";
             System.out.println(name + "start" + "-" + result.getIndex());
             try {
                 System.out.println(name + "running" + "-" + result.getIndex());

@@ -1,5 +1,6 @@
 package com.tangerine.specter.executors;
 
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -11,7 +12,7 @@ public class NewCachedThreadPoolDemo {
     public static class ThreadA implements Runnable {
         @Override
         public void run() {
-            System.out.println("当前线程名称：" + Thread.currentThread().getName());
+            System.out.println("当前线程名称：" + Thread.currentThread().getName() + "：" + new Date());
         }
     }
 

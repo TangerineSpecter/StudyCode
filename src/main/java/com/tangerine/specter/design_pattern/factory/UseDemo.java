@@ -1,6 +1,7 @@
 package com.tangerine.specter.design_pattern.factory;
 
 import com.tangerine.specter.design_pattern.factory.service.ChineseGirlFactory;
+import com.tangerine.specter.design_pattern.factory.service.Girl;
 import com.tangerine.specter.design_pattern.factory.service.GirlStore;
 
 /**
@@ -24,6 +25,7 @@ public class UseDemo {
      */
     public static void main(String[] args) {
         GirlStore girlStore = new GirlStore(new ChineseGirlFactory());
-        girlStore.createGril("thin");
+        Girl girl = girlStore.createGirl("thin");
+        girl.show();
     }
 }

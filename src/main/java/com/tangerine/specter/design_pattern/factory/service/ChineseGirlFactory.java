@@ -13,11 +13,12 @@ public class ChineseGirlFactory extends AbstractGirlFactory {
 
     private String city = "中国";
 
+    @Override
     public Girl createGirl(String whatYouLike) {
         Girl girl = null;
-        if (whatYouLike == "fat") {
+        if (whatYouLike.equals("fat")) {
             girl = new FatGirl(city);
-        } else if (whatYouLike == "thin") {
+        } else if (whatYouLike.equals("thin")) {
             girl = new ThinGirl(city);
         }
         return girl;

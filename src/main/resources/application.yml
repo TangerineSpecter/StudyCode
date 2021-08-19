@@ -1,0 +1,6 @@
+#线程池配置
+async-thread-pool:
+  corePoolSize: 20
+  maxPoolSize: 1000
+  keepAliveSeconds: 30
+  queueCapacity: 1000

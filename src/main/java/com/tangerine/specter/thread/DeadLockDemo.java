@@ -11,8 +11,8 @@ public class DeadLockDemo {
     /**
      * 定义锁对象
      */
-    static final Lock LOCK1 = new ReentrantLock();
-    static final Lock LOCK2 = new ReentrantLock();
+    private static final Lock LOCK1 = new ReentrantLock();
+    private static final Lock LOCK2 = new ReentrantLock();
 
     public static void main(String[] args) throws Exception {
         new Thread(new DeadLock(true), "线程1").start();

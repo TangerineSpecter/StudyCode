@@ -1,5 +1,6 @@
 package com.tangerine.specter.executors;
 
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -12,11 +13,11 @@ public class NewFixedThreadPoolDemo {
         @Override
         public void run() {
             try {
-                Thread.sleep(300);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("AAA");
+            System.out.println("AAA：" + new Date());
         }
     }
 
@@ -24,11 +25,11 @@ public class NewFixedThreadPoolDemo {
         @Override
         public void run() {
             try {
-                Thread.sleep(200);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("BBB");
+            System.out.println("BBB：" + new Date());
         }
     }
 
@@ -37,11 +38,11 @@ public class NewFixedThreadPoolDemo {
         @Override
         public void run() {
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("CCC");
+            System.out.println("CCC：" + new Date());
         }
     }
 

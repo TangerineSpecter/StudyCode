@@ -37,7 +37,7 @@ public class NewScheduleThreadPoolDemo {
 
     public static String time2Date(long seconds, String format) {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
-        return sdf.format(new Date(Long.valueOf(seconds + "000")));
+        return sdf.format(new Date(Long.parseLong(seconds + "000")));
     }
 
     /**
