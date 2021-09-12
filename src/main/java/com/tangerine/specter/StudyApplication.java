@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class StudyApplication {
 
     public static void main(String[] args) {
-        System.out.println("测试代码rebase test1");
+        System.out.println("测试代码rebase test3");
         SpringApplication.run(StudyApplication.class, args);
     }
 
