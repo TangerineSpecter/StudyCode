@@ -7,8 +7,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-@Service
-@Profile("single")
+//@Service
+//@Profile("single")
 public class RedisAnnoServiceDemo {
 
     /**
