@@ -1,9 +1,10 @@
 package com.tangerine.specter.config;
 
-import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
@@ -19,7 +20,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * redis单机配置
  * EnableCaching 开启spring cache注解功能
  */
-@Configurable
+@Configuration
 @Profile("single")
 @EnableCaching
 public class SingleRedisConfig {
@@ -52,4 +53,5 @@ public class SingleRedisConfig {
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig();
         return new RedisCacheManager(redisCacheWriter, redisCacheConfiguration);
     }
+
 }
