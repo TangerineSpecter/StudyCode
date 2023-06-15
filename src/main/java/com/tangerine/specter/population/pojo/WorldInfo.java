@@ -37,10 +37,16 @@ public class WorldInfo implements Serializable {
     private List<BasePeople> diePeople = CollUtil.newArrayList();
 
     /**
+     * 出生人口
+     */
+    private int bornPeople;
+
+    /**
      * 初始1万人
      */
     public WorldInfo() {
-        IntStream.range(0, 10000).forEach(i -> allPeople.add(new BasePeople()));
+        int peopleNumber = 10000;
+        IntStream.range(0, peopleNumber).forEach(i -> allPeople.add(new BasePeople()));
     }
 
     /**
@@ -62,18 +68,20 @@ public class WorldInfo implements Serializable {
     }
 
     /**
-     * 增加一年
+     * 新一年
+     * 年份+1，清理死亡人口
      */
-    public void addYear() {
+    public void newYear() {
         this.year++;
+        diePeople.clear();
     }
 
     /**
      * 执行下一年
      */
     public void nextYear() {
-        this.addYear();
-        int bornPeople = this.getNotMarriagePeople() / 2;
+        this.newYear();
+        this.bornPeople = this.getNotMarriagePeople() / 2;
         this.allPeople.forEach(people -> {
             people.setMarriage(true);
             boolean isDie = people.addAge();
@@ -82,20 +90,26 @@ public class WorldInfo implements Serializable {
             }
         });
         //出生
-        this.born(bornPeople);
+        this.born();
         //死亡
         if (CollUtil.isNotEmpty(diePeople)) {
             allPeople.removeAll(diePeople);
-            diePeople.clear();
         }
     }
 
     /**
      * 出生
-     *
-     * @param bornPeople 出生人数
      */
-    public void born(int bornPeople) {
-        IntStream.range(0, bornPeople).forEach(i -> allPeople.add(new BasePeople()));
+    public void born() {
+        IntStream.range(0, this.bornPeople).forEach(i -> allPeople.add(new BasePeople()));
+    }
+
+    /**
+     * 全人类灭绝
+     *
+     * @return true：灭绝
+     */
+    public boolean isAllDie() {
+        return allPeople.isEmpty();
     }
 }

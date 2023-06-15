@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -130,10 +130,11 @@
             <artifactId>hutool-all</artifactId>
             <version>5.6.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.redisson/redisson -->
         <dependency>
             <groupId>org.redisson</groupId>
-            <artifactId>redisson-all</artifactId>
-            <version>3.17.0</version>
+            <artifactId>redisson</artifactId>
+            <version>3.21.3</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.alibaba/easyexcel -->
         <!-- 3+版本的的easyexcel，使用poi 5+版本时，需要自己引入poi 5+版本的包，且手动排除：poi-ooxml-schemas -->
@@ -159,6 +160,16 @@
             <artifactId>tls-sig-api-v2</artifactId>
             <version>2.0</version>
         </dependency>
+        <!-- thymeleaf -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <!-- thymeleaf布局模块 -->
+        <!--        <dependency>-->
+        <!--            <groupId>nz.net.ultraq.thymeleaf</groupId>-->
+        <!--            <artifactId>thymeleaf-layout-dialect</artifactId>-->
+        <!--        </dependency>-->
     </dependencies>
 
     <build>
