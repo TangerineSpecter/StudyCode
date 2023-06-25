@@ -17,3 +17,7 @@
 > thread 线程演示
     
     1.CurrentThreadDemo 获取当前线程
+
+> 人口增长趋势演示
+
+    项目地址：[文档说明](https://github.com/TangerineSpecter/StudyCode/tree/master/src/main/java/com/tangerine/specter/population)
