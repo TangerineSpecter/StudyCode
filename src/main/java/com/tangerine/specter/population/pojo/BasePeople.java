@@ -42,11 +42,14 @@ public class BasePeople implements IPeople {
 
     /**
      * 年纪增长
-     *
-     * @return 未超过死亡年龄则返回false，ture表示死亡
      */
-    public boolean addAge() {
+    public void addAge() {
         this.age++;
+
+    }
+
+    @Override
+    public boolean isDie() {
         return age > dieAge;
     }
 

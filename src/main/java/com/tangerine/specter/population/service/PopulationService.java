@@ -15,12 +15,8 @@ public class PopulationService {
     public StatisView v10Version() {
         WorldInfo worldInfo = new WorldInfo(10000, new BasePeople());
         StatisView viewData = new StatisView(worldInfo.getYear(), worldInfo.getTotalPeople(), 0, 0);
-        for (int index = 0; index < worldInfo.getAllTime(); index++) {
-            worldInfo.nextYear();
+        while (worldInfo.nextYear()) {
             viewData.add(worldInfo);
-            if (worldInfo.isAllDie()) {
-                break;
-            }
         }
         return viewData;
     }
@@ -28,12 +24,8 @@ public class PopulationService {
     public StatisView v11Version() {
         WorldInfo worldInfo = new WorldInfo(10000, new V11People());
         StatisView viewData = new StatisView(worldInfo.getYear(), worldInfo.getTotalPeople(), 0, 0);
-        for (int index = 0; index < worldInfo.getAllTime(); index++) {
-            worldInfo.nextYear();
+        while (worldInfo.nextYear()) {
             viewData.add(worldInfo);
-            if (worldInfo.isAllDie()) {
-                break;
-            }
         }
         return viewData;
     }

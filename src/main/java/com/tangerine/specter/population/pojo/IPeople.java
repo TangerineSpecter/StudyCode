@@ -26,8 +26,13 @@ public interface IPeople {
 
     /**
      * 年龄增长
+     */
+    void addAge();
+
+    /**
+     * 是否死亡
      *
      * @return true：表示超过死亡年龄
      */
-    boolean addAge();
+    boolean isDie();
 }

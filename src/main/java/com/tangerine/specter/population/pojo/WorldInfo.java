@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
  */
 @Data
 @AllArgsConstructor
-public class WorldInfo<T extends IPeople> implements Serializable {
+public class WorldInfo implements Serializable {
 
     /**
      * 100个世纪，1万年
@@ -82,8 +82,6 @@ public class WorldInfo<T extends IPeople> implements Serializable {
         this.year++;
         //重置本年结婚人数
         this.marryPeople = 0;
-        //总人口 + 出生人口
-        allPeople.addAll(this.bornPeople);
         //清理本年出生人口记录
         bornPeople.clear();
         //清理死亡人口
@@ -91,32 +89,57 @@ public class WorldInfo<T extends IPeople> implements Serializable {
     }
 
     /**
-     * 执行下一年
+     * 一年结束
      */
-    public void nextYear() {
-        this.newYear();
-        for (IPeople people : this.allPeople) {
-            this.marryPeople += people.marry();
-            boolean isDie = people.addAge();
-            if (isDie) {
-                diePeople.add(people);
-            }
-            //出生
-            this.born(people);
+    private void endYear() {
+        //总人口 + 出生人口 - 死亡人口
+        allPeople.addAll(this.bornPeople);
+        allPeople.removeAll(this.diePeople);
+    }
+
+    /**
+     * 执行下一年
+     *
+     * @return true：还有人口，false：无人口
+     */
+    public boolean nextYear() {
+        //无人口 或者 达到最大年份
+        if (this.isAllDie() || this.year >= this.allTime) {
+            return false;
         }
-        //死亡
-        if (CollUtil.isNotEmpty(diePeople)) {
-            allPeople.removeAll(diePeople);
+        //新一年
+        this.newYear();
+        //过程
+        this.process();
+        //结束
+        this.endYear();
+        return true;
+    }
+
+    /**
+     * 过程
+     */
+    private void process() {
+        for (IPeople people : this.allPeople) {
+            //成长
+            people.addAge();
+            //婚姻
+            this.marryPeople += people.marry();
+            //出生 和 死亡
+            this.bornAndDie(people);
         }
     }
 
     /**
      * 出生
      */
-    public void born(IPeople people) {
+    public void bornAndDie(IPeople people) {
         //成对 且 超过0，则人口 + 1
         if (this.marryPeople > 0 && this.marryPeople % 2 == 0) {
             this.bornPeople.add(people.newPeople(0));
+        }
+        if (people.isDie()) {
+            this.diePeople.add(people);
         }
     }
 
