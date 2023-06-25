@@ -30,7 +30,14 @@ public class WorldInfo implements Serializable {
      * 总人口
      */
     private List<IPeople> allPeople = CollUtil.newArrayList();
-
+    /**
+     * 未婚男性
+     */
+    private List<IPeople> manPeople = CollUtil.newArrayList();
+    /**
+     * 未婚女性
+     */
+    private List<IPeople> womanPeople = CollUtil.newArrayList();
     /**
      * 出生人口
      */
