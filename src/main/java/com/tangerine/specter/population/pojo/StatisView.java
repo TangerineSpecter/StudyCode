@@ -46,7 +46,7 @@ public class StatisView implements Serializable {
     public void add(WorldInfo worldInfo) {
         this.date.add(worldInfo.getYear());
         this.totalPeople.add(worldInfo.getTotalPeople());
-        this.bornPeople.add(worldInfo.getBornPeople());
+        this.bornPeople.add(CollUtil.size(worldInfo.getBornPeople()));
         this.diePeople.add(CollUtil.size(worldInfo.getDiePeople()));
         this.maxPeople = Math.max(worldInfo.getTotalPeople(), maxPeople);
         this.maxYear = worldInfo.getYear() - 2020;

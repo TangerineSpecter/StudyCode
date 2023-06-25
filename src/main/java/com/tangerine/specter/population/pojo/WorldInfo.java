@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
  */
 @Data
 @AllArgsConstructor
-public class WorldInfo implements Serializable {
+public class WorldInfo<T extends IPeople> implements Serializable {
 
     /**
      * 100个世纪，1万年
@@ -29,24 +29,31 @@ public class WorldInfo implements Serializable {
     /**
      * 总人口
      */
-    private List<BasePeople> allPeople = CollUtil.newArrayList();
-
-    /**
-     * 死亡人口
-     */
-    private List<BasePeople> diePeople = CollUtil.newArrayList();
+    private List<IPeople> allPeople = CollUtil.newArrayList();
 
     /**
      * 出生人口
      */
-    private int bornPeople;
+    private List<IPeople> bornPeople = CollUtil.newArrayList();
 
     /**
-     * 初始1万人
+     * 死亡人口
      */
-    public WorldInfo() {
-        int peopleNumber = 10000;
-        IntStream.range(0, peopleNumber).forEach(i -> allPeople.add(new BasePeople()));
+    private List<IPeople> diePeople = CollUtil.newArrayList();
+
+
+    /**
+     * 结婚人数
+     */
+    private int marryPeople;
+
+    /**
+     * 初始化
+     *
+     * @param initPeople 初始人口
+     */
+    public WorldInfo(int initPeople, IPeople people) {
+        IntStream.range(0, initPeople).forEach(i -> allPeople.add(people.newPeople(20)));
     }
 
     /**
@@ -73,6 +80,13 @@ public class WorldInfo implements Serializable {
      */
     public void newYear() {
         this.year++;
+        //重置本年结婚人数
+        this.marryPeople = 0;
+        //总人口 + 出生人口
+        allPeople.addAll(this.bornPeople);
+        //清理本年出生人口记录
+        bornPeople.clear();
+        //清理死亡人口
         diePeople.clear();
     }
 
@@ -81,16 +95,15 @@ public class WorldInfo implements Serializable {
      */
     public void nextYear() {
         this.newYear();
-        this.bornPeople = this.getNotMarriagePeople() / 2;
-        this.allPeople.forEach(people -> {
-            people.setMarriage(true);
+        for (IPeople people : this.allPeople) {
+            this.marryPeople += people.marry();
             boolean isDie = people.addAge();
             if (isDie) {
                 diePeople.add(people);
             }
-        });
-        //出生
-        this.born();
+            //出生
+            this.born(people);
+        }
         //死亡
         if (CollUtil.isNotEmpty(diePeople)) {
             allPeople.removeAll(diePeople);
@@ -100,8 +113,11 @@ public class WorldInfo implements Serializable {
     /**
      * 出生
      */
-    public void born() {
-        IntStream.range(0, this.bornPeople).forEach(i -> allPeople.add(new BasePeople()));
+    public void born(IPeople people) {
+        //成对 且 超过0，则人口 + 1
+        if (this.marryPeople > 0 && this.marryPeople % 2 == 0) {
+            this.bornPeople.add(people.newPeople(0));
+        }
     }
 
     /**
@@ -112,4 +128,5 @@ public class WorldInfo implements Serializable {
     public boolean isAllDie() {
         return allPeople.isEmpty();
     }
+
 }

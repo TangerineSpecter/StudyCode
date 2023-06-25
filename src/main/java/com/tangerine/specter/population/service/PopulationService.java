@@ -1,7 +1,8 @@
 package com.tangerine.specter.population.service;
 
-import cn.hutool.core.util.StrUtil;
+import com.tangerine.specter.population.pojo.BasePeople;
 import com.tangerine.specter.population.pojo.StatisView;
+import com.tangerine.specter.population.pojo.V11People;
 import com.tangerine.specter.population.pojo.WorldInfo;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class PopulationService {
 
     public StatisView v10Version() {
-        WorldInfo worldInfo = new WorldInfo();
+        WorldInfo worldInfo = new WorldInfo(10000, new BasePeople());
         StatisView viewData = new StatisView(worldInfo.getYear(), worldInfo.getTotalPeople(), 0, 0);
         for (int index = 0; index < worldInfo.getAllTime(); index++) {
             worldInfo.nextYear();
@@ -24,7 +25,17 @@ public class PopulationService {
         return viewData;
     }
 
-    public static void main(String[] args) {
-        new PopulationService().v10Version();
+    public StatisView v11Version() {
+        WorldInfo worldInfo = new WorldInfo(10000, new V11People());
+        StatisView viewData = new StatisView(worldInfo.getYear(), worldInfo.getTotalPeople(), 0, 0);
+        for (int index = 0; index < worldInfo.getAllTime(); index++) {
+            worldInfo.nextYear();
+            viewData.add(worldInfo);
+            if (worldInfo.isAllDie()) {
+                break;
+            }
+        }
+        return viewData;
     }
+
 }
