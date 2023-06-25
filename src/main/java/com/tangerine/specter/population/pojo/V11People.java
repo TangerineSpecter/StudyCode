@@ -14,7 +14,7 @@ public class V11People extends BasePeople {
     /**
      * 结婚年龄
      */
-    private int marryAge = 24;
+    private int marryAge = 28;
 
     @Override
     public int marry() {
