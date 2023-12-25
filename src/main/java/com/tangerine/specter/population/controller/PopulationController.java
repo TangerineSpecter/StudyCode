@@ -24,7 +24,7 @@ public class PopulationController {
 
     @GetMapping("/index")
     public ModelAndView page(Model model) {
-        model.addAttribute("worldInfo", populationService.v11Version());
+        model.addAttribute("worldInfo", populationService.v10Version());
         return ServiceResult.jumpPage("/population/index");
     }
 }

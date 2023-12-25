@@ -3,12 +3,12 @@ package com.tangerine.specter.jwt.tencent;
 import cn.hutool.crypto.digest.HMac;
 import cn.hutool.crypto.digest.HmacAlgorithm;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -32,7 +32,7 @@ public class TencentMeetingDemo {
         HttpGet request = new HttpGet(host + apiUrl);
         setHeaders(request, apiUrl);
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpResponse response = httpClient.execute(request);
+        CloseableHttpResponse response = httpClient.execute(request);
         String s = EntityUtils.toString(response.getEntity());
         System.out.println(s);
     }
@@ -41,7 +41,7 @@ public class TencentMeetingDemo {
         HttpPost request = new HttpPost(host + apiUrl);
         setHeaders(request, apiUrl);
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpResponse response = httpClient.execute(request);
+        CloseableHttpResponse response = httpClient.execute(request);
         String s = EntityUtils.toString(response.getEntity());
         System.out.println(s);
     }

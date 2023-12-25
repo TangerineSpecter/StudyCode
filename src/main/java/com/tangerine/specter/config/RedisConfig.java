@@ -1,12 +1,11 @@
 package com.tangerine.specter.config;
 
 import com.tangerine.specter.redis.KeyExpiredListener;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
-
-import javax.annotation.Resource;
 
 @Configuration
 public class RedisConfig {
