@@ -5,6 +5,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 死锁演示
+ * 1、通过指令 jps -l 查找进程pid
+ * 2、导出数据 jstack pid > 123.txt
+ * 搜索deadlock定位到代码位置
  */
 public class DeadLockDemo {
 

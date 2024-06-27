@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.io.file.FileReader;
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HtmlUtil;
 import com.alibaba.fastjson.JSONObject;
@@ -59,7 +60,7 @@ public class HandLpDemo implements IWordSegmenter {
 //            System.out.println(term);
 //			System.out.println(term.word);
         });
-        return CollUtil.newHashMap();
+        return MapUtil.newHashMap();
     }
 
     public static void main(String[] args) {

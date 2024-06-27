@@ -20,7 +20,7 @@ public class RedisAnnoServiceDemo {
     @Cacheable(cacheManager = "cacheManager", value = "cache-1", key = "#userId")
     public User findUserById(Long userId) throws Exception {
         // 读取数据库
-        User user = new User(userId, "张三");
+        User user = new User(userId, "张三", 18);
         System.out.println("从数据库中读取到数据：" + user);
         return user;
     }
