@@ -1,17 +1,29 @@
 package com.tangerine.specter.util;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.poi.excel.ExcelUtil;
 import com.alibaba.excel.EasyExcelFactory;
 import com.alibaba.excel.enums.CellDataTypeEnum;
-import com.alibaba.excel.enums.poi.FillPatternTypeEnum;
 import com.alibaba.excel.metadata.data.*;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.alibaba.excel.write.metadata.style.WriteCellStyle;
 import com.alibaba.excel.write.metadata.style.WriteFont;
 import com.tangerine.specter.util.model.SimpleExcelHeader;
+import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.apache.poi.poifs.crypt.EncryptionInfo;
+import org.apache.poi.poifs.crypt.EncryptionMode;
+import org.apache.poi.poifs.crypt.Encryptor;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -98,6 +110,64 @@ public class ExcelUtils {
 
         list.add(data);
         String fileName = "simpleExcel";
-        simpleWrite("/Users/zhouliangjun/Desktop/", fileName, ExcelTypeEnum.XLSX, list, SimpleExcelHeader.class);
+        String path = "/Users/zhouliangjun/Desktop/";
+        simpleWrite(path, fileName, ExcelTypeEnum.XLSX, list, SimpleExcelHeader.class);
+        //添加密码
+//        String password = "123456";
+//        encryptExcel(path + fileName + ".xlsx", path+ "simpleExcel" + "-encrypt.xlsx", password);
+        setExcelReadOnly(path + fileName + ".xlsx", path+ "simpleExcel" + "-OnlyRead.xlsx");
+    }
+
+    public static void setExcelReadOnly(String inputFilePath, String outputFilePath) {
+        try (Workbook workbook = new XSSFWorkbook(inputFilePath);
+             FileOutputStream fileOut = new FileOutputStream(outputFilePath)) {
+
+            // 获取第一个工作表
+            Sheet sheet = workbook.getSheetAt(0);
+
+            // 设置工作表为只读
+            sheet.protectSheet(""); // 你可以设置一个密码，也可以不设置
+
+            // 将工作簿写入输出流
+            workbook.write(fileOut);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * excel添加密码
+     * @param inputFilePath
+     * @param outputFilePath
+     * @param password
+     */
+    public static void encryptExcel(String inputFilePath, String outputFilePath, String password) {
+        try (InputStream is = new FileInputStream(inputFilePath);
+             OutputStream os = new FileOutputStream(outputFilePath)) {
+
+            // 读取 Excel 文件
+            OPCPackage opcPackage = OPCPackage.open(is);
+            Workbook workbook = new XSSFWorkbook(opcPackage);
+
+            // 创建加密文件系统
+            POIFSFileSystem fs = new POIFSFileSystem();
+            EncryptionInfo info = new EncryptionInfo(EncryptionMode.agile);
+            Encryptor encryptor = info.getEncryptor();
+            encryptor.confirmPassword(password);
+
+            // 将 Workbook 写入加密输出流
+            try (OutputStream encryptedOut = encryptor.getDataStream(fs)) {
+                workbook.write(encryptedOut);
+            }
+
+            // 将加密文件系统写入输出流
+            fs.writeFilesystem(os);
+
+            // 关闭资源
+            workbook.close();
+            opcPackage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
