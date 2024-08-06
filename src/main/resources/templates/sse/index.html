@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>SSE Example</title>
+</head>
+<body>
+<h1>SSE Example</h1>
+<div id="sse-data"></div>
+
+<script>
+    const eventSource = new EventSource('/sse');
+    const sseDataElement = document.getElementById('sse-data');
+
+    eventSource.onmessage = function (event) {
+        // const data = JSON.parse(event.data);
+        console.log("sse...")
+        sseDataElement.innerHTML += event.data;
+    };
+
+    eventSource.onopen = function (event) {
+        sseDataElement.innerHTML = '开启聊天连接<br><br>🤖：';
+    };
+
+    eventSource.onerror = function (event) {
+        if (event.target.readyState === EventSource.CLOSED) {
+            sseDataElement.innerHTML += '聊天连接关闭<br>';
+        } else {
+            sseDataElement.innerHTML += '连接出错<br>';
+        }
+    };
+</script>
+</body>
+</html>

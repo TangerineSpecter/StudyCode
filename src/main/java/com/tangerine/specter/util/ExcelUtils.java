@@ -1,29 +1,23 @@
 package com.tangerine.specter.util;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.poi.excel.ExcelUtil;
 import com.alibaba.excel.EasyExcelFactory;
 import com.alibaba.excel.enums.CellDataTypeEnum;
 import com.alibaba.excel.metadata.data.*;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.alibaba.excel.write.metadata.style.WriteCellStyle;
 import com.alibaba.excel.write.metadata.style.WriteFont;
+import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
 import com.tangerine.specter.util.model.SimpleExcelHeader;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.poifs.crypt.EncryptionInfo;
 import org.apache.poi.poifs.crypt.EncryptionMode;
 import org.apache.poi.poifs.crypt.Encryptor;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.Date;
 import java.util.List;
 
@@ -41,6 +35,7 @@ public class ExcelUtils {
         //通过includeColumnFieldNames 指定只返回的字段名列
         //includeColumnIndexes 指定只返回的索引列
         EasyExcelFactory.write(path + fileName + excelType.getValue(), clazz)
+                .registerWriteHandler(excelStyleSet())
                 .excelType(excelType).inMemory(true).sheet("标签1").doWrite(data);
     }
 
@@ -113,9 +108,52 @@ public class ExcelUtils {
         String path = "/Users/zhouliangjun/Desktop/";
         simpleWrite(path, fileName, ExcelTypeEnum.XLSX, list, SimpleExcelHeader.class);
         //添加密码
-//        String password = "123456";
-//        encryptExcel(path + fileName + ".xlsx", path+ "simpleExcel" + "-encrypt.xlsx", password);
-        setExcelReadOnly(path + fileName + ".xlsx", path+ "simpleExcel" + "-OnlyRead.xlsx");
+        String password = "123456";
+        encryptExcel(path + fileName + ".xlsx", path + "simpleExcel" + "-encrypt.xlsx", password);
+
+//        setExcelReadOnly(path + fileName + ".xlsx", path + "simpleExcel" + "-OnlyRead.xlsx");
+//        setExcelReadOnly("/Users/zhouliangjun/Downloads/腾讯会议助手的快速会议-471409103-67012add9dee.xlsx", "/Users/zhouliangjun/Downloads/腾讯会议助手的快速会议-471409103-67012add9dee-onlyRead.xlsx");
+        setExcelReadOnly("/Users/zhouliangjun/Downloads/腾讯会议助手的快速会议-471409103-67012add9dee_副本.xlsx");
+    }
+
+    /**
+     * 默认的样式设置
+     *
+     * @return 样式信息
+     */
+    public static HorizontalCellStyleStrategy excelStyleSet() {
+        // 头的策略
+        WriteCellStyle headWriteCellStyle = new WriteCellStyle();
+        // 背景颜色
+        headWriteCellStyle.setFillForegroundColor(IndexedColors.SKY_BLUE.getIndex());
+        headWriteCellStyle.setFillPatternType(FillPatternType.SOLID_FOREGROUND);
+        // 边框样式
+        headWriteCellStyle.setBorderBottom(BorderStyle.THIN);
+        headWriteCellStyle.setBottomBorderColor((short) 0);
+        headWriteCellStyle.setBorderLeft(BorderStyle.THIN);
+        headWriteCellStyle.setLeftBorderColor((short) 0);
+        headWriteCellStyle.setBorderRight(BorderStyle.THIN);
+        headWriteCellStyle.setRightBorderColor((short) 0);
+        headWriteCellStyle.setBorderTop(BorderStyle.THIN);
+        headWriteCellStyle.setTopBorderColor((short) 0);
+        // 自动换行
+        headWriteCellStyle.setWrapped(true);
+        // 水平、垂直居中对齐
+        headWriteCellStyle.setHorizontalAlignment(HorizontalAlignment.CENTER);
+        headWriteCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        WriteFont headWriteFont = new WriteFont();
+        headWriteFont.setFontName("黑体");
+        headWriteFont.setFontHeightInPoints((short) 12);
+        headWriteFont.setColor(IndexedColors.BLACK.getIndex());
+//        headWriteFont.setBold(true);
+        headWriteCellStyle.setWriteFont(headWriteFont);
+        // 内容的策略
+        WriteCellStyle contentWriteCellStyle = new WriteCellStyle();
+        WriteFont contentWriteFont = new WriteFont();
+        // 字体大小
+        contentWriteFont.setFontHeightInPoints((short) 10);
+        contentWriteCellStyle.setWriteFont(contentWriteFont);
+        return new HorizontalCellStyleStrategy(headWriteCellStyle, contentWriteCellStyle);
     }
 
     public static void setExcelReadOnly(String inputFilePath, String outputFilePath) {
@@ -125,8 +163,34 @@ public class ExcelUtils {
             // 获取第一个工作表
             Sheet sheet = workbook.getSheetAt(0);
 
-            // 设置工作表为只读
-            sheet.protectSheet(""); // 你可以设置一个密码，也可以不设置
+            // 设置工作表为只读，你可以设置一个密码，也可以不设置
+            sheet.protectSheet("123456");
+
+            // 将工作簿写入输出流
+            workbook.write(fileOut);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setExcelReadOnly(String filePath) {
+        File file = new File(filePath);
+
+        // 检查文件是否存在且不为空
+        if (!file.exists() || file.length() == 0) {
+            System.out.println("文件不存在或为空: " + filePath);
+            return;
+        }
+
+        try (FileInputStream fis = new FileInputStream(file);
+             Workbook workbook = new XSSFWorkbook(fis);
+             FileOutputStream fileOut = new FileOutputStream(file)) {
+
+            // 获取第一个工作表
+            Sheet sheet = workbook.getSheetAt(0);
+
+            // 设置工作表为只读，你可以设置一个密码，也可以不设置
+            sheet.protectSheet("");
 
             // 将工作簿写入输出流
             workbook.write(fileOut);
@@ -137,6 +201,7 @@ public class ExcelUtils {
 
     /**
      * excel添加密码
+     *
      * @param inputFilePath
      * @param outputFilePath
      * @param password
